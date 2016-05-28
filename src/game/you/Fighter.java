@@ -1,3 +1,4 @@
+package game.you;
 import java.util.HashSet;
 
 public class Fighter {

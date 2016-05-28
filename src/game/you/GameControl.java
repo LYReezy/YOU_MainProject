@@ -1,5 +1,5 @@
+package game.you;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.OptionalInt;
@@ -137,10 +137,10 @@ public class GameControl {
 		}
 		set.removeIf(s->s.onSect!=null);
 		f.occupyDirections.clear();
-		int count=0;
+		//int count=0;
 		if(defendArea==8){
 		for(String dir:new String[]{"e","w","s","n"}){
-			int kkk;
+			//int kkk;
 			if(getOccupyRange(f.type, dir, f.x, f.y).stream().filter(s->(s.status!=sect.status)&&(s.onSect==null||s.onSect.level<f.level)&&(mapOfGame.stream().filter(p->Math.abs(p.x-s.x)<2&&Math.abs(p.y-s.y)<2).allMatch(p->p.onSect==null||p.onSect.level<=sect.onSect.level))).count()>0&&!getOccupyRange(f.type, dir, f.x, f.y).stream().filter(s->s.onSect!=null).anyMatch(s->s.onSect.player!=player&&s.onSect.level>=sect.onSect.level)){
 				f.occupyDirections.add(dir);
 			}

@@ -1,19 +1,13 @@
-
-import java.awt.AWTEvent;
-import java.awt.AWTEventMulticaster;
+package game.you;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Label;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
@@ -21,15 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageFilter;
-import java.awt.image.DirectColorModel;
 import java.awt.image.RescaleOp;
-import java.awt.peer.LightweightPeer;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,25 +24,17 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.OptionalInt;
 import java.util.Random;
-import java.util.Scanner;
-
 import javax.imageio.ImageIO;
-import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.RepaintManager;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.event.ListDataListener;
 import javax.swing.event.MouseInputAdapter;
-import javax.xml.ws.ResponseWrapper;
 
 public class GameUI {
 	static int occupyParam;
@@ -139,6 +118,10 @@ public class GameUI {
 }
 
 class GamePanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JFrame mainFrame;
 	int numOfPlayers;
 	int widthOfMap;
@@ -237,7 +220,7 @@ class GamePanel extends JPanel{
 		Collections.shuffle(numList);
 		for(int i=1;i<=numOfPlayers;i++){
 			try{
-				sectionImages[i-1]=ImageIO.read(new File("src/image/Section2-"+(numList.get(i-1))+".png"));
+				sectionImages[i-1]=ImageIO.read(GameUI.class.getClassLoader().getResource("image/Section2-"+(numList.get(i-1))+".png"));
 			}catch(IOException e){
 				e.printStackTrace();
 			}
@@ -300,35 +283,35 @@ class GamePanel extends JPanel{
 		directArrows=new HashMap<String,ImageIcon>();
 		diagonalArrows=new HashMap<String,ImageIcon>();
 		try{
-			directArrows.put("north60",new ImageIcon(ImageIO.read(new File("src/image/north60.png"))));
-			directArrows.put("north30",new ImageIcon(ImageIO.read(new File("src/image/north30.png"))));
+			directArrows.put("north60",new ImageIcon(GameUI.class.getClassLoader().getResource("image/north60.png")));
+			directArrows.put("north30",new ImageIcon(GameUI.class.getClassLoader().getResource("image/north30.png")));
 			north=new JLabel();
 			north.setName("north");
 			north.addMouseListener(new ArrowLabelListener());
-			directArrows.put("south60",new ImageIcon(ImageIO.read(new File("src/image/south60.png"))));
-			directArrows.put("south30",new ImageIcon(ImageIO.read(new File("src/image/south30.png"))));
+			directArrows.put("south60",new ImageIcon(GameUI.class.getClassLoader().getResource("image/south60.png")));
+			directArrows.put("south30",new ImageIcon(GameUI.class.getClassLoader().getResource("image/south30.png")));
 			south=new JLabel();
 			south.setName("south");
 			south.addMouseListener(new ArrowLabelListener());
-			directArrows.put("east60",new ImageIcon(ImageIO.read(new File("src/image/east60.png"))));
-			directArrows.put("east30",new ImageIcon(ImageIO.read(new File("src/image/east30.png"))));
+			directArrows.put("east60",new ImageIcon(GameUI.class.getClassLoader().getResource("image/east60.png")));
+			directArrows.put("east30",new ImageIcon(GameUI.class.getClassLoader().getResource("image/east30.png")));
 			east=new JLabel();
 			east.setName("east");
 			east.addMouseListener(new ArrowLabelListener());
-			directArrows.put("west60",new ImageIcon(ImageIO.read(new File("src/image/west60.png"))));
-			directArrows.put("west30",new ImageIcon(ImageIO.read(new File("src/image/west30.png"))));
+			directArrows.put("west60",new ImageIcon(GameUI.class.getClassLoader().getResource("image/west60.png")));
+			directArrows.put("west30",new ImageIcon(GameUI.class.getClassLoader().getResource("image/west30.png")));
 			west=new JLabel();
 			west.setName("west");
 			west.addMouseListener(new ArrowLabelListener());
-			diagonalArrows.put("west60",new ImageIcon(ImageIO.read(new File("src/image/southwest60.png"))));
-			diagonalArrows.put("west30",new ImageIcon(ImageIO.read(new File("src/image/southwest30.png"))));
-			diagonalArrows.put("north60",new ImageIcon(ImageIO.read(new File("src/image/northwest60.png"))));
-			diagonalArrows.put("north30",new ImageIcon(ImageIO.read(new File("src/image/northwest30.png"))));
-			diagonalArrows.put("east60",new ImageIcon(ImageIO.read(new File("src/image/northeast60.png"))));
-			diagonalArrows.put("east30",new ImageIcon(ImageIO.read(new File("src/image/northeast30.png"))));
-			diagonalArrows.put("south60",new ImageIcon(ImageIO.read(new File("src/image/southeast60.png"))));
-			diagonalArrows.put("south30",new ImageIcon(ImageIO.read(new File("src/image/southeast30.png"))));
-			gameBackground=ImageIO.read(new File("src/image/gameBackground.png"));
+			diagonalArrows.put("west60",new ImageIcon(GameUI.class.getClassLoader().getResource("image/southwest60.png")));
+			diagonalArrows.put("west30",new ImageIcon(GameUI.class.getClassLoader().getResource("image/southwest30.png")));
+			diagonalArrows.put("north60",new ImageIcon(GameUI.class.getClassLoader().getResource("image/northwest60.png")));
+			diagonalArrows.put("north30",new ImageIcon(GameUI.class.getClassLoader().getResource("image/northwest30.png")));
+			diagonalArrows.put("east60",new ImageIcon(GameUI.class.getClassLoader().getResource("image/northeast60.png")));
+			diagonalArrows.put("east30",new ImageIcon(GameUI.class.getClassLoader().getResource("image/northeast30.png")));
+			diagonalArrows.put("south60",new ImageIcon(GameUI.class.getClassLoader().getResource("image/southeast60.png")));
+			diagonalArrows.put("south30",new ImageIcon(GameUI.class.getClassLoader().getResource("image/southeast30.png")));
+			gameBackground=ImageIO.read(GameUI.class.getClassLoader().getResource("image/gameBackground.png"));
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -361,9 +344,9 @@ class GamePanel extends JPanel{
 		cursorSize=Toolkit.getDefaultToolkit().getBestCursorSize(wSection, (int)(hSection*1.4));
 		
 		try{
-			fighterImages.put("s", ImageIO.read(new File("src/image/s.png")).getScaledInstance(wSection, (int)(hSection*1.4), Image.SCALE_AREA_AVERAGING));
-			fighterImages.put("w", ImageIO.read(new File("src/image/w.png")).getScaledInstance(wSection, (int)(hSection*1.4), Image.SCALE_AREA_AVERAGING));
-			fighterImages.put("a", ImageIO.read(new File("src/image/a.png")).getScaledInstance(wSection, (int)(hSection*1.4), Image.SCALE_AREA_AVERAGING));
+			fighterImages.put("s", ImageIO.read(GameUI.class.getClassLoader().getResource("image/s.png")).getScaledInstance(wSection, (int)(hSection*1.4), Image.SCALE_AREA_AVERAGING));
+			fighterImages.put("w", ImageIO.read(GameUI.class.getClassLoader().getResource("image/w.png")).getScaledInstance(wSection, (int)(hSection*1.4), Image.SCALE_AREA_AVERAGING));
+			fighterImages.put("a", ImageIO.read(GameUI.class.getClassLoader().getResource("image/a.png")).getScaledInstance(wSection, (int)(hSection*1.4), Image.SCALE_AREA_AVERAGING));
 			spearImage=fighterImages.get("s").getScaledInstance(cursorSize.width, cursorSize.height, Image.SCALE_AREA_AVERAGING);
 			swordImage=fighterImages.get("w").getScaledInstance(cursorSize.width, cursorSize.height, Image.SCALE_AREA_AVERAGING);
 			axeImage=fighterImages.get("a").getScaledInstance(cursorSize.width, cursorSize.height, Image.SCALE_AREA_AVERAGING);
@@ -375,8 +358,8 @@ class GamePanel extends JPanel{
 		swordCursor=Toolkit.getDefaultToolkit().createCustomCursor(swordImage, cursorHotspot, "w");
 		axeCursor=Toolkit.getDefaultToolkit().createCustomCursor(axeImage, cursorHotspot, "a");
 		try{
-			moveCursor=Toolkit.getDefaultToolkit().createCustomCursor(ImageIO.read(new File("src/image/move.png")).getScaledInstance(cursorSize.width, cursorSize.height, Image.SCALE_AREA_AVERAGING), new Point(cursorSize.width/2, cursorSize.height-1),"m");
-			//occupyCursor=Toolkit.getDefaultToolkit().createCustomCursor(ImageIO.read(new File("src/image/occupy.png")).getScaledInstance(cursorSize.width, cursorSize.height, Image.SCALE_AREA_AVERAGING), new Point(cursorSize.width/2, cursorSize.height/2),"o");
+			moveCursor=Toolkit.getDefaultToolkit().createCustomCursor(ImageIO.read(GameUI.class.getClassLoader().getResource("image/move.png")).getScaledInstance(cursorSize.width, cursorSize.height, Image.SCALE_AREA_AVERAGING), new Point(cursorSize.width/2, cursorSize.height-1),"m");
+			//occupyCursor=Toolkit.getDefaultToolkit().createCustomCursor(ImageIO.read(GameUI.class.getClassLoader().getResource("image/occupy.png")).getScaledInstance(cursorSize.width, cursorSize.height, Image.SCALE_AREA_AVERAGING), new Point(cursorSize.width/2, cursorSize.height/2),"o");
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -498,7 +481,7 @@ class GamePanel extends JPanel{
 				}
 				else{
 					fighter=availableFighters[random.nextInt(availableFighters.length)];
-					Fighter z=control.fightersOfPlayers.get(currentPlayer).get(fighter);
+					//Fighter z=control.fightersOfPlayers.get(currentPlayer).get(fighter);
 					if(operation<0.15){
 						if(control.upgradeAllowed(currentPlayer,fighter)){
 							control.upgrade(currentPlayer, fighter);
@@ -1238,6 +1221,7 @@ class GamePanel extends JPanel{
 }
 
 class IndexPage extends JPanel{
+	private static final long serialVersionUID = 1L;
 	JFrame frame;
 	IndexPage thisPage;
 	Font msBlack;
@@ -1366,15 +1350,15 @@ class IndexPage extends JPanel{
 		atSettingPage=false;
 		atResultPage=false;
 		/*try{
-			indexBackground=ImageIO.read(new File("indexbackground.png"));
+			indexBackground=ImageIO.read(GameUI.class.getClassLoader().getResource("indexbackground.png"));
 		}catch(IOException e){
 			e.printStackTrace();
 		}*/
 		try{
-			indexBackground=ImageIO.read(new File("src/image/indexBackground.png"));
-			creditsBackground=ImageIO.read(new File("src/image/creditsBackground.png"));
-			settingBackground=ImageIO.read(new File("src/image/settingBackground.png"));
-			resultBackground=ImageIO.read(new File("src/image/resultBackground.png"));
+			indexBackground=ImageIO.read(GameUI.class.getClassLoader().getResource("image/indexBackground.png"));
+			creditsBackground=ImageIO.read(GameUI.class.getClassLoader().getResource("image/creditsBackground.png"));
+			settingBackground=ImageIO.read(GameUI.class.getClassLoader().getResource("image/settingBackground.png"));
+			resultBackground=ImageIO.read(GameUI.class.getClassLoader().getResource("image/resultBackground.png"));
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -1473,7 +1457,10 @@ class IndexPage extends JPanel{
 	class numOfPlayerListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			playerNum=(Integer)((JComboBox<Integer>)e.getSource()).getSelectedItem();
+			
+			@SuppressWarnings("unchecked")
+			JComboBox<Integer> jComboBox = (JComboBox<Integer>)e.getSource();
+			playerNum=(Integer)jComboBox.getSelectedItem();
 			if(playerNum!=null&&AIPlayerNum!=null) if(playerNum+AIPlayerNum>1&&hMap>0&&wMap>0&&(AIPlayerNum==0||aiLevel>0)) startPlayingTheFxxkingGame.setEnabled(true);
 			else startPlayingTheFxxkingGame.setEnabled(false);
 			/*else if(playerNum==6){
@@ -1635,6 +1622,7 @@ class IndexPage extends JPanel{
 	}
 	
 	class mapSizeListener implements ActionListener{
+		@SuppressWarnings("unchecked")
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(((JComboBox<String>)e.getSource()).getSelectedItem()!=null){
@@ -1683,6 +1671,7 @@ class IndexPage extends JPanel{
 	class widthCustomizedListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			@SuppressWarnings("unchecked")
 			Integer w=(Integer)((JComboBox<Integer>)e.getSource()).getSelectedItem();
 			if(w!=null&&hMap!=null){
 				wMap=w;
@@ -1695,6 +1684,7 @@ class IndexPage extends JPanel{
 	class heightCustomizedListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			@SuppressWarnings("unchecked")
 			Integer h=(Integer)((JComboBox<Integer>)e.getSource()).getSelectedItem();
 			if(h!=null&&wMap!=null){
 				hMap=h;
@@ -1777,8 +1767,9 @@ class IndexPage extends JPanel{
 	
 	public JButton translucentButton(Color color,String text){
 		JButton but = new JButton(text) {
+			private static final long serialVersionUID = 1L;
 
-            @Override
+			@Override
             protected void paintComponent(Graphics g) {
                 if (getBackground().getAlpha() < 255) {
                     g.setColor(getBackground());
